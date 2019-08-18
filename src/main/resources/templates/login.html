@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>login</title>
+</head>
+<body>
+<div th:text="${msg}">
+</div>
+<form th:action="@{/login}" method="post">
+    <table>
+        <tr>
+            <td>
+                User Name :
+            </td>
+            <td>
+                <input type="text" name="username"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password :
+            </td>
+            <td>
+                <input type="password" name="password"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img th:src="@{/captcha}" style="cursor:pointer;width: 100px;" onclick="refresh(this)" >
+            </td>
+            <td>
+                <input type="text" name="captchaCode"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Sign In"/>
+            </td>
+            <td><a th:href="@{/register}">register</a>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function refresh(obj) {
+        obj.src = "captcha?t=" + new Date().getMilliseconds();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>modify</title>
+</head>
+<body>
+<div th:text="${msg}">
+</div>
+<form th:action="@{/modify}" th:object="${userVo}" method="post">
+    <table>
+        <tr>
+            <td>Name :
+            </td>
+            <td><input type="text" th:field="*{name}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Email:
+            </td>
+            <td><input type="text" th:field="*{email}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Username :
+            </td>
+            <td><input type="text" th:field="*{username}" readonly = "readonly"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Password:
+            </td>
+            <td><input type="password" th:field="*{password}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Re-Enter Password:
+            </td>
+            <td><input type="password" th:field="*{newPassword}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img th:src="@{/captcha}" style="width: 100px;" onclick="refresh(this)" >
+            </td>
+            <td>
+                <input type="text" name="captchaCode"/>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Update"/>
+            </td>
+            <td><a th:href="@{/index}">index</a>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function refresh(obj) {
+        obj.src = "captcha?t=" + new Date().getMilliseconds();
+    }
+</script>
+</body>
+</html>
